@@ -126,7 +126,7 @@ static sqlite3 * _whc_database;
 }
 
 + (NSString *)databaseCacheDirectory {
-    return [NSString stringWithFormat:@"%@/Library/Caches/WHCSqlite/",NSHomeDirectory()];
+    return [NSString stringWithFormat:@"%@/Documents/WHCSqlite/",NSHomeDirectory()];
 }
 
 + (WHC_FieldType)parserFieldTypeWithAttr:(NSString *)attr {
