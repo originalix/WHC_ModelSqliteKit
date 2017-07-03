@@ -101,6 +101,8 @@
     [WHCSqlite insert:person];
     NSLog(@"线程3.存储单个模型对象到数据库演示代码");
     
+    NSArray * ps = [WHCSqlite query:Person.self];
+    
     /// 获取Person表所有name和name长度
     NSArray * nameArray = [WHCSqlite query:[Person class] func:@"name, length(name)"];
     NSLog(@"nameArray = %@",nameArray);
@@ -177,8 +179,11 @@
     }];
     
     /// 3.修改存储模型对象演示代码
-    
-    [WHCSqlite update:person
+    // 更新整条记录中指定的字段(更新Person表在age字段大于25岁时name值为whc，age为100岁)
+    BOOL result = [WHCSqlite update:Person.self value:@"name = 'whc', age = 100"
+                              where:@"age > 25"];
+    // 更新整条记录
+    result = [WHCSqlite update:person
                       where:@"name = '吴超1000' OR age >= 1000"];
     NSLog(@"修改批量模型对象成功");
     
